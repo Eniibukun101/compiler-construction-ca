@@ -90,6 +90,22 @@ impl Scanner {
                 }
             }
 
+            ' ' | '\t' | '\r' => {}
+
+            '\n' => {
+                self.line += 1;
+            }
+
+            '/' => {
+                if self.matches('/'){
+                    while self.peek() != '\n' && !self.at_end() {
+                        self.advance();
+                    }
+                } else {
+                    self.add(TokenType::Slash);
+                }
+            }
+
 
             //fix: what would happen if it's none of the above
             _ => {}
