@@ -73,6 +73,27 @@ impl Scanner {
                 }
             }
 
+            //update
+            '>' => {
+                if self.matches('='){
+                    self.add(TokenType::GreaterEqual);
+                } else {
+                    self.add(TokenType::Greater);
+                }
+            }
+
+            '<' => {
+                if self.matches('=') {
+                    self.add(TokenType::LessEqual);
+                } else {
+                    self.add(TokenType::Less);
+                }
+            }
+
+
+            //fix: what would happen if it's none of the above
+            _ => {}
+
 
         }
     }
